@@ -1,0 +1,109 @@
+// Define the PostgreSQL provider
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model (For tenants & homeowners)
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(TENANT) // Tenant or Homeowner
+  createdAt DateTime @default(now())
+
+  listings         Listing[] // Relation to listings (if homeowner)
+  interests        Interest[] // Relation to interests (if tenant)
+  sentMessages     Message[]      @relation("sentMessages") // Relation to sent messages
+  receivedMessages Message[]      @relation("receivedMessages") // Relation to received messages
+  reviewsWritten   Review[]       @relation("reviewsWritten") // Reviews written by this user
+  reviewsReceived  Review[]       @relation("reviewsReceived") // Reviews received by this user
+  notifications    Notification[] // User notifications
+}
+
+// Role Enum (Tenant or Homeowner)
+enum Role {
+  TENANT
+  HOMEOWNER
+}
+
+// Listings Model (Houses posted by homeowners)
+model Listing {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  price       Float
+  location    String
+  imageUrls   String[]
+  owner       User     @relation(fields: [ownerId], references: [id])
+  ownerId     String
+  status      Status   @default(AVAILABLE) // Available or Occupied
+  createdAt   DateTime @default(now())
+
+  interests Interest[] // Users who showed interest in this house
+}
+
+// Status Enum (House availability)
+enum Status {
+  AVAILABLE
+  BOOKED
+  OCCUPIED
+}
+
+// Messages Model (Tenant-Homeowner Chat)
+model Message {
+  id         String   @id @default(uuid())
+  sender     User     @relation("sentMessages", fields: [senderId], references: [id])
+  senderId   String
+  receiver   User     @relation("receivedMessages", fields: [receiverId], references: [id])
+  receiverId String
+  content    String
+  createdAt  DateTime @default(now())
+  isRead     Boolean  @default(false)
+
+  @@index([receiverId]) // Improves querying performance for received messages
+}
+
+// Interest Model (Tracking tenants interested in houses)
+model Interest {
+  id        String   @id @default(uuid())
+  tenant    User     @relation(fields: [tenantId], references: [id])
+  tenantId  String
+  listing   Listing  @relation(fields: [houseId], references: [id])
+  ListingId   String
+  createdAt DateTime @default(now())
+}
+model Interest {
+  id         String   @id @default(uuid())
+  tenantId   String   @relation(fields: [tenantId], references: [id])
+  houseId    String   @relation(fields: [houseId], references: [id])
+  homeownerId String  // Add this to store the homeowner's ID
+  createdAt  DateTime @default(now())
+}
+
+// Notifications Model (For informing users)
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Reviews Model (For rating homeowners)
+model Review {
+  id         String   @id @default(uuid())
+  rating     Int
+  comment    String
+  reviewer   User     @relation("reviewsWritten", fields: [reviewerId], references: [id])
+  reviewerId String
+  owner      User     @relation("reviewsReceived", fields: [ownerId], references: [id])
+  ownerId    String
+  createdAt  DateTime @default(now())
+}

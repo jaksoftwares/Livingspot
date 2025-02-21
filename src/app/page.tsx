@@ -1,101 +1,92 @@
+import { FaSearch, FaHome, FaStar,  } from "react-icons/fa";
+import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-100 text-gray-900">
+      {/* Hero Section */}
+      <section className="relative w-full h-[80vh] bg-cover bg-center flex items-center justify-center text-center p-5" style={{ backgroundImage: "url('/hero-bg.jpg')" }}>
+        <div className="bg-black bg-opacity-50 p-10 rounded-xl text-white max-w-3xl">
+          <h1 className="text-4xl font-bold">Find Your Perfect Home Near Campus</h1>
+          <p className="mt-3 text-lg">Search for vacant houses near institutions with ease.</p>
+          <div className="mt-6 flex justify-center">
+            <input type="text" placeholder="Search location..." className="p-3 rounded-l-lg w-72 focus:outline-none" />
+            <button className="bg-red-500 text-white p-3 rounded-r-lg hover:bg-red-600">
+              <FaSearch />
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-white">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold">How It Works</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
+          <div className="p-5 bg-gray-100 rounded-lg shadow">
+            <FaSearch className="text-red-500 text-4xl mx-auto mb-3" />
+            <h3 className="text-xl font-bold">Search</h3>
+            <p>Find houses available near your institution with advanced filters.</p>
+          </div>
+          <div className="p-5 bg-gray-100 rounded-lg shadow">
+            <FaHome className="text-red-500 text-4xl mx-auto mb-3" />
+            <h3 className="text-xl font-bold">Visit</h3>
+            <p>View house details, images, and schedule visits directly.</p>
+          </div>
+          <div className="p-5 bg-gray-100 rounded-lg shadow">
+            <FaStar className="text-red-500 text-4xl mx-auto mb-3" />
+            <h3 className="text-xl font-bold">Move In</h3>
+            <p>Contact landlords, finalize details, and settle in easily.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Listings */}
+      <section className="py-16 bg-gray-200">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-semibold">Featured Listings</h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {/* Sample Property Card */}
+        <div className="bg-white p-5 rounded-lg shadow">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/house.jpg"
+            alt="House"
+            width={400} // Set appropriate width
+            height={250} // Set appropriate height
+            className="rounded-lg mb-4"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+          <h3 className="text-xl font-semibold">2 Bedroom Apartment</h3>
+          <p className="text-gray-600">Near JKUAT, Ksh 15,000/month</p>
+          <Link href="/property/1" className="text-red-500 mt-3 block">
+            View Details
+          </Link>
+        </div>
+        <div className="bg-white p-5 rounded-lg shadow">
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            src="/luxury2.jpg"
+            alt="House"
+            width={400} // Set appropriate width
+            height={250} // Set appropriate height
+            className="rounded-lg mb-4"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h3 className="text-xl font-semibold">1 Bedroom Studio</h3>
+          <p className="text-gray-600">Near KU, Ksh 10,000/month</p>
+          <Link href="/property/2" className="text-red-500 mt-3 block">
+            View Details
+          </Link>
+        </div>
+      </div>
+    </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-white text-center">
+        <h2 className="text-3xl font-semibold">List Your Property With Us</h2>
+        <p className="mt-3 text-lg">Reach thousands of students searching for housing.</p>
+        <Link href="/list-property" className="mt-5 inline-block bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600">Get Started</Link>
+      </section>
     </div>
   );
 }
