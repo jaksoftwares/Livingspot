@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 // Hash user passwords before storing
 export async function hashPassword(password: string) {
@@ -20,6 +20,6 @@ export function generateToken(userId: string) {
 }
 
 // Verify JWT Token
-export function verifyToken(token: string) {
+export function verifyToken(token: string): JwtPayload | string {
     return jwt.verify(token, process.env.JWT_SECRET as string);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaSearch, FaMapMarkerAlt, FaFilter } from "react-icons/fa";
+import {  FaMapMarkerAlt, FaFilter } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,41 +11,37 @@ const ListingsPage = () => {
   const [priceRange, setPriceRange] = useState("");
   const [bedrooms, setBedrooms] = useState("");
   const [houseType, setHouseType] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const listingsPerPage = 3;
 
   // Sample listings (Replace with API data later)
   const listings = [
-    {
-      id: 1,
-      image: "/house.jpg",
-      title: "2 Bedroom Apartment",
-      location: "Near JKUAT",
-      price: "Ksh 15,000/month",
-    },
-    {
-      id: 2,
-      image: "/luxury2.jpg",
-      title: "1 Bedroom Studio",
-      location: "Near KU",
-      price: "Ksh 10,000/month",
-    },
-    {
-      id: 3,
-      image: "/house3.jpg",
-      title: "3 Bedroom Bungalow",
-      location: "Thika",
-      price: "Ksh 25,000/month",
-    },
-    {
-      id: 4,
-      image: "/house4.jpg",
-      title: "4 Bedroom Mansion",
-      location: "Nairobi",
-      price: "Ksh 50,000/month",
-    },
+    { id: 1, image: "/house.jpg", title: "2 Bedroom Apartment", location: "Near JKUAT", price: 15000, type: "apartment", bedrooms: 2 },
+    { id: 2, image: "/luxury2.jpg", title: "1 Bedroom Studio", location: "Near KU", price: 10000, type: "studio", bedrooms: 1 },
+    { id: 3, image: "/house3.jpg", title: "3 Bedroom Bungalow", location: "Thika", price: 25000, type: "bungalow", bedrooms: 3 },
+    { id: 4, image: "/house4.jpg", title: "4 Bedroom Mansion", location: "Nairobi", price: 50000, type: "mansion", bedrooms: 4 },
   ];
 
+  // Filter Listings
+  const filteredListings = listings.filter((listing) => {
+    return (
+      (!location || listing.location.toLowerCase().includes(location.toLowerCase())) &&
+      (!priceRange ||
+        (priceRange === "under-10k" && listing.price < 10000) ||
+        (priceRange === "10k-20k" && listing.price >= 10000 && listing.price <= 20000) ||
+        (priceRange === "20k-30k" && listing.price >= 20000 && listing.price <= 30000) ||
+        (priceRange === "above-30k" && listing.price > 30000)) &&
+      (!bedrooms || listing.bedrooms.toString() === bedrooms) &&
+      (!houseType || listing.type === houseType)
+    );
+  });
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredListings.length / listingsPerPage);
+  const displayedListings = filteredListings.slice((currentPage - 1) * listingsPerPage, currentPage * listingsPerPage);
+
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-10 mt-16">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-center mb-6">Available Listings</h1>
 
@@ -119,44 +115,93 @@ const ListingsPage = () => {
             </select>
           </div>
         </div>
-
-        {/* Search Button */}
-        <button className="mt-4 w-full md:w-auto bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition">
-          <FaSearch className="inline-block mr-2" /> Search
-        </button>
       </div>
 
       {/* Listings Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {listings.map((listing) => (
-          <div key={listing.id} className="bg-white shadow-md rounded-lg p-4">
-            <Image
-              src={listing.image}
-              alt={listing.title}
-              width={300}
-              height={200}
-              className="rounded-lg"
-            />
-            <h3 className="text-lg font-semibold mt-3">{listing.title}</h3>
-            <p className="text-gray-600">{listing.location}</p>
-            <p className="text-red-500 font-semibold">{listing.price}</p>
-            <Link href={`/property/${listing.id}`} className="text-blue-500 mt-2 inline-block">
-              View Details
-            </Link>
-          </div>
-        ))}
+        {displayedListings.length > 0 ? (
+          displayedListings.map((listing) => (
+            <div key={listing.id} className="bg-white shadow-md rounded-lg p-4 transition hover:shadow-lg">
+              <Image src={listing.image} alt={listing.title} width={300} height={200} className="rounded-lg" />
+              <h3 className="text-lg font-semibold mt-3">{listing.title}</h3>
+              <p className="text-gray-600">{listing.location}</p>
+              <p className="text-red-500 font-semibold">Ksh {listing.price.toLocaleString()}/month</p>
+              <Link href={`/property/${listing.id}`} className="text-blue-500 mt-2 inline-block">
+                View Details
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p className="text-center col-span-3 text-gray-500">No listings found.</p>
+        )}
       </div>
 
-      {/* Pagination (Placeholder for now) */}
-      <div className="mt-10 flex justify-center">
-        <button className="px-4 py-2 bg-gray-300 text-gray-700 rounded-l-md">Previous</button>
-        <button className="px-4 py-2 bg-gray-300 text-gray-700">1</button>
-        <button className="px-4 py-2 bg-gray-300 text-gray-700">2</button>
-        <button className="px-4 py-2 bg-gray-300 text-gray-700">3</button>
-        <button className="px-4 py-2 bg-gray-300 text-gray-700 rounded-r-md">Next</button>
+      {/* Pagination */}
+      <div className="mt-10 flex justify-center space-x-2">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:opacity-50"
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`px-4 py-2 ${currentPage === index + 1 ? "bg-red-500 text-white" : "bg-gray-300 text-gray-700"} rounded-md`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
 };
 
 export default ListingsPage;
+;
+
+
+// "use client";
+// import { useEffect, useState } from "react";
+// import { fetchListings } from "@/services/api";
+
+// export default function ListingsPage() {
+//   const [listings, setListings] = useState([]);
+
+//   useEffect(() => {
+//     const loadListings = async () => {
+//       try {
+//         const { data } = await fetchListings();
+//         setListings(data);
+//       } catch (error) {
+//         console.error("Error fetching listings:", error);
+//       }
+//     };
+//     loadListings();
+//   }, []);
+
+//   return (
+//     <div className="p-4">
+//       <h1 className="text-xl font-bold">House Listings</h1>
+//       <div className="grid grid-cols-3 gap-4">
+//         {listings.map((house) => (
+//           <div key={house.id} className="border p-4 rounded-lg shadow">
+//             <img src={house.imageUrl} alt={house.title} className="w-full h-40 object-cover rounded" />
+//             <h2 className="text-lg font-semibold">{house.title}</h2>
+//             <p>{house.description}</p>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+

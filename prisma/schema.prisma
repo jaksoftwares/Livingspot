@@ -78,13 +78,7 @@ model Interest {
   ListingId   String
   createdAt DateTime @default(now())
 }
-model Interest {
-  id         String   @id @default(uuid())
-  tenantId   String   @relation(fields: [tenantId], references: [id])
-  houseId    String   @relation(fields: [houseId], references: [id])
-  homeownerId String  // Add this to store the homeowner's ID
-  createdAt  DateTime @default(now())
-}
+
 
 // Notifications Model (For informing users)
 model Notification {

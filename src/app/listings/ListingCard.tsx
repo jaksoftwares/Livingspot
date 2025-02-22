@@ -29,3 +29,27 @@ const ListingCard: React.FC<ListingCardProps> = ({ id, title, price, location, i
 };
 
 export default ListingCard;
+
+
+// import { expressInterest } from "@/services/api";
+
+// const ListingCard = ({ house }) => {
+//   const handleInterest = async () => {
+//     try {
+//       await expressInterest(house.id);
+//       alert("Interest submitted successfully!");
+//     } catch (error) {
+//       console.error("Error showing interest:", error);
+//     }
+//   };
+
+//   return (
+//     <div className="border p-4 rounded-lg shadow">
+//       <img src={house.imageUrl} alt={house.title} className="w-full h-40 object-cover rounded" />
+//       <h2 className="text-lg font-semibold">{house.title}</h2>
+//       <button onClick={handleInterest} className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">
+//         Show Interest
+//       </button>
+//     </div>
+//   );
+// };
