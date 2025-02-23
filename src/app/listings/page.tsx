@@ -20,6 +20,11 @@ const ListingsPage = () => {
     { id: 2, image: "/luxury2.jpg", title: "1 Bedroom Studio", location: "Near KU", price: 10000, type: "studio", bedrooms: 1 },
     { id: 3, image: "/house3.jpg", title: "3 Bedroom Bungalow", location: "Thika", price: 25000, type: "bungalow", bedrooms: 3 },
     { id: 4, image: "/house4.jpg", title: "4 Bedroom Mansion", location: "Nairobi", price: 50000, type: "mansion", bedrooms: 4 },
+    { id: 5, image: "/house.jpg", title: "2 Bedroom Apartment", location: "Near JKUAT", price: 15000, type: "apartment", bedrooms: 2 },
+    { id: 6, image: "/luxury2.jpg", title: "1 Bedroom Studio", location: "Near KU", price: 10000, type: "studio", bedrooms: 1 },
+    { id: 7, image: "/house3.jpg", title: "3 Bedroom Bungalow", location: "Thika", price: 25000, type: "bungalow", bedrooms: 3 },
+    { id: 8, image: "/house4.jpg", title: "4 Bedroom Mansion", location: "Nairobi", price: 50000, type: "mansion", bedrooms: 4 },
+
   ];
 
   // Filter Listings

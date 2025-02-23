@@ -2,101 +2,113 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const user = null; // Replace with actual authentication logic
 
   return (
     <nav className="bg-white shadow-md fixed w-full top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600 flex items-center">
+          <Link href="/" className="text-2xl font-extrabold text-blue-700 flex items-center tracking-wide">
             🏡 LivingSpot
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 items-center">
-            <Link href="/search" className="text-gray-700 hover:text-blue-500 transition">
-              Find Houses
-            </Link>
-            <Link href="/listings" className="text-gray-700 hover:text-blue-500 transition">
-              Listings
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-500 transition">
-              About Us
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-500 transition">
-              Contact
-            </Link>
-            <Link href="/faqs" className="text-gray-700 hover:text-blue-500 transition">
-              FAQs
-            </Link>
+          <div className="hidden md:flex space-x-8 items-center font-medium text-gray-800">
+            {["Find Houses", "Listings", "About Us", "Contact", "FAQs"].map((item, index) => (
+              <Link
+                key={index}
+                href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
+                className="hover:text-blue-600 transition duration-300"
+              >
+                {item}
+              </Link>
+            ))}
 
+            {/* Auth Buttons */}
             {user ? (
-              <div className="relative group">
-                <button className="text-gray-700 hover:text-blue-500">
-                  Account ▼
+              <div className="relative">
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center text-gray-800 hover:text-blue-600 transition duration-300"
+                >
+                  Account <ChevronDown className="ml-1" size={18} />
                 </button>
-                <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 py-2 w-40">
-                  <Link href="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Profile
-                  </Link>
-                  <Link href="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Dashboard
-                  </Link>
-                  <button className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
-                    Logout
-                  </button>
-                </div>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 animate-fadeIn">
+                    <Link href="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Profile
+                    </Link>
+                    <Link href="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Dashboard
+                    </Link>
+                    <button className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             ) : (
-              <Link
-                href="/auth/login"
-                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition"
-              >
-                Get Started
-              </Link>
+              <div className="flex space-x-4">
+                <Link
+                  href="/auth/login"
+                  className="px-5 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-100 transition duration-300"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                >
+                  Get Started
+                </Link>
+              </div>
             )}
           </div>
 
           {/* Mobile Menu Button */}
           <button className="md:hidden flex items-center" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (Fixed: Login & Get Started now visible) */}
       <div
-        className={`md:hidden fixed top-16 left-0 w-full bg-white shadow-md transition-transform transform ${
+        className={`md:hidden fixed top-16 left-0 w-full bg-white shadow-lg transition-transform transform ${
           menuOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="p-4 space-y-3">
-          <Link href="/search" className="block text-gray-700 hover:text-blue-500">
-            Find Houses
-          </Link>
-          <Link href="/listings" className="block text-gray-700 hover:text-blue-500">
-            Listings
-          </Link>
-          <Link href="/about" className="block text-gray-700 hover:text-blue-500">
-            About Us
-          </Link>
-          <Link href="/contact" className="block text-gray-700 hover:text-blue-500">
-            Contact
-          </Link>
-          <Link href="/faqs" className="block text-gray-700 hover:text-blue-500">
-            FAQs
-          </Link>
+        <div className="p-6 flex flex-col space-y-5 text-lg font-medium">
+          {["Find Houses", "Listings", "About Us", "Contact", "FAQs"].map((item, index) => (
+            <Link
+              key={index}
+              href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
+              className="block text-gray-800 hover:text-blue-600 transition duration-300"
+              onClick={() => setMenuOpen(false)} // Close menu on click
+            >
+              {item}
+            </Link>
+          ))}
           {user ? (
             <>
-              <Link href="/profile" className="block text-gray-700 hover:text-blue-500">
+              <Link
+                href="/profile"
+                className="block text-gray-800 hover:text-blue-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 Profile
               </Link>
-              <Link href="/dashboard" className="block text-gray-700 hover:text-blue-500">
+              <Link
+                href="/dashboard"
+                className="block text-gray-800 hover:text-blue-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 Dashboard
               </Link>
               <button className="block w-full text-left text-red-600 hover:bg-gray-100">
@@ -104,12 +116,22 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <Link
-              href="/auth/login"
-              className="block text-center text-white bg-blue-600 px-4 py-2 rounded-md shadow-md hover:bg-blue-700"
-            >
-              Get Started
-            </Link>
+            <div className="flex flex-col space-y-3">
+              <Link
+                href="/auth/login"
+                className="text-center border border-blue-600 text-blue-600 px-5 py-2 rounded-lg hover:bg-blue-100 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="text-center text-white bg-blue-600 px-5 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Get Started
+              </Link>
+            </div>
           )}
         </div>
       </div>

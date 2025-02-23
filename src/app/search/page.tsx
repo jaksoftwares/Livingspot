@@ -35,6 +35,27 @@ const FindHouse = () => {
       location: "Thika",
       price: "Ksh 25,000/month",
     },
+    {
+    id: 4,
+    image: "/house.jpg",
+    title: "2 Bedroom Apartment",
+    location: "Near JKUAT",
+    price: "Ksh 15,000/month",
+  },
+  {
+    id: 5,
+    image: "/luxury2.jpg",
+    title: "1 Bedroom Studio",
+    location: "Near KU",
+    price: "Ksh 10,000/month",
+  },
+  {
+    id: 6,
+    image: "/housee.jpg",
+    title: "3 Bedroom Bungalow",
+    location: "Thika",
+    price: "Ksh 25,000/month",
+  },
   ];
 
   return (
