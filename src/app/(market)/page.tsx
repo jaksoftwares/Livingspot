@@ -1,3 +1,5 @@
+"use client"
+
 import { FaSearch, FaHome, FaStar, FaCheckCircle, FaUsers, FaQuestionCircle } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";

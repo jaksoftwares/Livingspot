@@ -1,13 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaHome, FaChartBar, FaEnvelope, FaStar } from "react-icons/fa";
+import { FaHome, FaChartBar, FaEnvelope, FaStar, FaUsers, FaMoneyBillWave, FaBell } from "react-icons/fa";
+import Link from "next/link";
 
 export default function LandlordDashboard() {
   const [loading, setLoading] = useState(true);
+  const [dashboardData, setDashboardData] = useState({
+    properties: 0,
+    tenants: 0,
+    messages: 0,
+    reviews: 0,
+    earnings: 0,
+    notifications: 0,
+  });
 
+  // Simulate fetching data
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => {
+      setDashboardData({
+        properties: 12,
+        tenants: 8,
+        messages: 3,
+        reviews: 5,
+        earnings: 4500,
+        notifications: 2,
+      });
+      setLoading(false);
+    }, 1000);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -19,32 +40,57 @@ export default function LandlordDashboard() {
       </p>
 
       {loading ? (
-        <div className="mt-6 text-center text-gray-600">Loading dashboard...</div>
+        <div className="mt-6 text-center text-gray-600 animate-pulse">Loading dashboard...</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          <div className="p-6 bg-white rounded-lg shadow">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+          {/* Properties */}
+          <Link href="/dashboard/landlord/properties" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
             <FaHome className="text-blue-500 text-4xl" />
             <h2 className="text-lg font-semibold mt-2">Properties</h2>
-            <p className="text-gray-600 text-sm">Manage your property listings.</p>
-          </div>
+            <p className="text-gray-600 text-sm">{dashboardData.properties} active listings</p>
+          </Link>
 
-          <div className="p-6 bg-white rounded-lg shadow">
+          {/* Analytics */}
+          <Link href="/dashboard/landlord/analytics" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
             <FaChartBar className="text-green-500 text-4xl" />
             <h2 className="text-lg font-semibold mt-2">Analytics</h2>
-            <p className="text-gray-600 text-sm">View engagement metrics and revenue.</p>
-          </div>
+            <p className="text-gray-600 text-sm">Track views, revenue & trends</p>
+          </Link>
 
-          <div className="p-6 bg-white rounded-lg shadow">
+          {/* Messages */}
+          <Link href="/dashboard/landlord/messages" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
             <FaEnvelope className="text-yellow-500 text-4xl" />
             <h2 className="text-lg font-semibold mt-2">Messages</h2>
-            <p className="text-gray-600 text-sm">Communicate with tenants.</p>
-          </div>
+            <p className="text-gray-600 text-sm">{dashboardData.messages} new messages</p>
+          </Link>
 
-          <div className="p-6 bg-white rounded-lg shadow">
+          {/* Reviews */}
+          <Link href="/dashboard/landlord/reviews" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
             <FaStar className="text-red-500 text-4xl" />
             <h2 className="text-lg font-semibold mt-2">Reviews</h2>
-            <p className="text-gray-600 text-sm">Check tenant feedback.</p>
-          </div>
+            <p className="text-gray-600 text-sm">{dashboardData.reviews} new tenant reviews</p>
+          </Link>
+
+          {/* Tenants */}
+          <Link href="/dashboard/landlord/tenants" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
+            <FaUsers className="text-purple-500 text-4xl" />
+            <h2 className="text-lg font-semibold mt-2">Tenants</h2>
+            <p className="text-gray-600 text-sm">{dashboardData.tenants} interested tenants</p>
+          </Link>
+
+          {/* Earnings */}
+          <Link href="/dashboard/landlord/analytics/earnings" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
+            <FaMoneyBillWave className="text-green-600 text-4xl" />
+            <h2 className="text-lg font-semibold mt-2">Earnings</h2>
+            <p className="text-gray-600 text-sm">${dashboardData.earnings} in earnings</p>
+          </Link>
+
+          {/* Notifications */}
+          <Link href="/dashboard/landlord/notifications" className="p-6 bg-white rounded-lg shadow hover:shadow-md transition transform hover:scale-105">
+            <FaBell className="text-blue-600 text-4xl" />
+            <h2 className="text-lg font-semibold mt-2">Notifications</h2>
+            <p className="text-gray-600 text-sm">{dashboardData.notifications} new alerts</p>
+          </Link>
         </div>
       )}
     </div>
