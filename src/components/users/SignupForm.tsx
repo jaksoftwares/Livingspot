@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -61,13 +62,12 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/login/image7.jpg')" }}>
-      
-      {/* Dark Overlay for Better Readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
+    <>
+    
       <div className="relative bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg">
+        {/* Company Branding */}
+        <div className="flex justify-center">
+            <Image src="/login/ls-logo.jpg" alt="LivingSpot Logo" width={60} height={60} priority />  </div>
         <h2 className="text-3xl font-bold text-center text-gray-800">Create Your Account</h2>
         <p className="text-center text-gray-500 mb-6">Sign up as a Landlord or Tenant</p>
 
@@ -218,6 +218,6 @@ export default function RegisterPage() {
           <Link href="/auth/login" className="text-blue-500 font-semibold ml-1">Login</Link>
         </p>
       </div>
-    </div>
+    </>
   );
 }

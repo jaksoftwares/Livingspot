@@ -47,78 +47,58 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      {/* Background */}
-      <div className="absolute inset-0 bg-cover bg-center bg-[url('/login/image9.jpg')]"></div>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-      {/* Login Card */}
-      <div className="relative bg-white p-8 rounded-lg shadow-xl w-full max-w-md z-10">
+    <div className="w-full md:w-1/2 flex items-center justify-center p-4">
+      <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl w-full max-w-md">
         {/* Company Branding */}
         <div className="text-center mb-6">
           <div className="flex justify-center">
-            <Image src="/login/ls-logo.jpg" alt="LivingSpot Logo" width={60} height={60} priority />
+            <Image
+              src="/login/ls-logo.jpg"
+              alt="LivingSpot Logo"
+              width={60}
+              height={60}
+              priority
+            />
           </div>
-          <h2 className="text-2xl font-bold text-gray-800">Login to LivingSpot</h2>
-          <p className="text-gray-500">Find & manage rental properties with ease</p>
+          <h2 className="text-2xl font-bold text-gray-800 mt-4">
+            Login to LivingSpot
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Find & manage rental properties with ease
+          </p>
         </div>
 
+        {/* Error Message */}
         {error && (
           <p className="text-red-500 bg-red-100 border border-red-400 px-4 py-2 rounded-md text-center mb-4">
             {error}
           </p>
         )}
 
-        {/* Social Login */}
-        <div className="space-y-3">
-          <button
-            onClick={() => handleSocialLogin("Google")}
-            className="w-full flex items-center justify-center bg-white text-gray-700 border border-gray-300 py-2 rounded-lg shadow-sm hover:bg-gray-100 transition"
-          >
-            <FaGoogle className="mr-2 text-red-500" /> Login with Google
-          </button>
-
-          <button
-            onClick={() => handleSocialLogin("Facebook")}
-            className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-lg shadow-sm hover:bg-blue-700 transition"
-          >
-            <FaFacebook className="mr-2" /> Login with Facebook
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <p className="px-3 text-gray-500 text-sm">or</p>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>
-
-        {/* Email/Password Login */}
-        <form onSubmit={handleLogin} className="space-y-5">
+        {/* Email/Password Login Form */}
+        <form onSubmit={handleLogin} className="space-y-4">
           {/* Email Input */}
           <div className="relative">
-            <FaEnvelope className="absolute left-3 top-4 text-gray-400" />
+            <FaEnvelope className="absolute left-3 top-3.5 text-gray-400" />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
               required
             />
           </div>
 
           {/* Password Input */}
           <div className="relative">
-            <FaLock className="absolute left-3 top-4 text-gray-400" />
+            <FaLock className="absolute left-3 top-3.5 text-gray-400" />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -126,23 +106,53 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-75"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        {/* Register & Forgot Password */}
-        <p className="text-center text-gray-600 mt-4">
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <div className="flex-1 border-t border-gray-300"></div>
+          <p className="px-3 text-gray-500 text-sm">or</p>
+          <div className="flex-1 border-t border-gray-300"></div>
+        </div>
+
+        {/* Social Login Buttons */}
+        <div className="space-y-3">
+          <button
+            onClick={() => handleSocialLogin("Google")}
+            className="w-full flex items-center justify-center bg-white text-gray-700 border border-gray-300 py-2.5 rounded-lg shadow-sm hover:bg-gray-100 transition"
+          >
+            <FaGoogle className="mr-2 text-red-500" /> Login with Google
+          </button>
+
+          <button
+            onClick={() => handleSocialLogin("Facebook")}
+            className="w-full flex items-center justify-center bg-blue-600 text-white py-2.5 rounded-lg shadow-sm hover:bg-blue-700 transition"
+          >
+            <FaFacebook className="mr-2" /> Login with Facebook
+          </button>
+        </div>
+
+        {/* Register & Forgot Password Links */}
+        <p className="text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <Link href="/auth/register" className="text-blue-500 font-semibold ml-1">
+          <Link
+            href="/auth/register"
+            className="text-blue-500 font-semibold hover:underline"
+          >
             Sign up
           </Link>
         </p>
 
         <p className="text-center text-gray-500 mt-2">
-          <Link href="/auth/reset-password" className="text-sm text-blue-400 hover:underline">
+          <Link
+            href="/auth/reset-password"
+            className="text-sm text-blue-400 hover:underline"
+          >
             Forgot password?
           </Link>
         </p>
