@@ -3,12 +3,12 @@ import axios from "axios";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
 
 // Register User
-export const registerUser = async (userData: any) => {
+export const registerUser = async (userData: unknown) => {
   return await axios.post(`${API_URL}/auth/register`, userData);
 };
 
 // Login User
-export const loginUser = async (userData: any) => {
+export const loginUser = async (userData: unknown) => {
   return await axios.post(`${API_URL}/auth/login`, userData);
 };
 
