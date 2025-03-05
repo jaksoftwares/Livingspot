@@ -1,1 +1,3 @@
-export function validateEmail(email) { return email.includes("@"); }
+export function validateEmail(email: string) {
+    return email.includes("@");
+  }
