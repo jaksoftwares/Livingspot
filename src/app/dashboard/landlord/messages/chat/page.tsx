@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { FiSend } from "react-icons/fi";
@@ -67,6 +67,7 @@ const ChatPage = () => {
 
   if (!chatData) {
     return (
+      
       <div className="p-6 bg-white shadow-md rounded-lg text-center">
         <p className="text-gray-600">No conversation selected.</p>
         <Link href="/dashboard/landlord/messages">
@@ -77,6 +78,7 @@ const ChatPage = () => {
   }
 
   return (
+    <Suspense fallback={<div>Loading chat...</div>}>
     <div className="bg-white p-6 shadow-md rounded-lg h-[80vh] flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <Link href="/dashboard/landlord/messages" className="flex items-center text-blue-600">
@@ -113,6 +115,8 @@ const ChatPage = () => {
         </button>
       </div>
     </div>
+
+    </Suspense>
   );
 };
 
