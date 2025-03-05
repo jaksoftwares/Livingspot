@@ -67,7 +67,6 @@ const ChatInterface= () => {
 
   if (!chatData) {
     return (
-      
       <div className="p-6 bg-white shadow-md rounded-lg text-center">
         <p className="text-gray-600">No conversation selected.</p>
         <Link href="/dashboard/landlord/messages">
