@@ -7,22 +7,30 @@ import Image from "next/image";
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
-      {/* Hero Section */}
-      <section 
-        className="relative w-full h-[80vh] bg-cover bg-center flex items-center justify-center text-center p-5" 
-        style={{ backgroundImage: "url('/hero-bg.jpg')" }}
-      >
-        <div className="bg-black bg-opacity-50 p-10 rounded-xl text-white max-w-3xl">
-          <h1 className="text-4xl font-bold">Find Your Perfect Home Near Campus</h1>
-          <p className="mt-3 text-lg">Search for vacant houses near institutions with ease.</p>
-          <div className="mt-6 flex justify-center">
-            <input type="text" placeholder="Search location..." className="p-3 rounded-l-lg w-72 focus:outline-none" />
-            <button className="bg-red-500 text-white p-3 rounded-r-lg hover:bg-red-600">
-              <FaSearch />
-            </button>
-          </div>
-        </div>
-      </section>
+     {/* Hero Section */}
+  <section 
+    className="relative w-full h-[80vh] bg-cover bg-center flex items-center justify-center text-center p-5" 
+    style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+  >
+    <div className="bg-black bg-opacity-50 p-6 md:p-10 rounded-xl text-white max-w-3xl w-full mx-auto">
+      <h1 className="text-3xl md:text-4xl font-bold">
+        Find Your Perfect Home Near Campus
+      </h1>
+      <p className="mt-3 text-base md:text-lg">
+        Search for vacant houses near institutions with ease.
+      </p>
+      <div className="mt-6 flex flex-col sm:flex-row justify-center">
+        <input 
+          type="text" 
+          placeholder="Search location..." 
+          className="p-3 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none w-full sm:w-64 focus:outline-none text-black"
+        />
+        <button className="bg-red-500 text-white p-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none hover:bg-red-600">
+          <FaSearch />
+        </button>
+      </div>
+    </div>
+  </section>
 
       {/* How It Works */}
       <section className="py-16 bg-white">
@@ -121,13 +129,13 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-        <div className="mt-10 mx-auto pl-96">
-          <Link href="/faqs">
-            <button className="px-6 py-3 bg-red-500 text-white font-semibold text-lg rounded-full shadow-md transition duration-300 hover:bg-red-600 ">
-              View All FAQs
-            </button>
-          </Link>
-        </div>
+        <div className="mt-10 flex justify-center">
+  <Link href="/faqs">
+    <button className="px-6 py-3 bg-red-500 text-white font-semibold text-lg rounded-full shadow-md transition duration-300 hover:bg-red-600">
+      View All FAQs
+    </button>
+  </Link>
+         </div>
       </section>
 
       {/* Call to Action */}
