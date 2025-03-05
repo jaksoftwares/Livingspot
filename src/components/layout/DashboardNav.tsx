@@ -45,3 +45,4 @@ const Navbar: React.FC<NavbarProps> = ({ onSidebarToggle }) => {
 };
 
 export default Navbar;
+
