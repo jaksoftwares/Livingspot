@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 
-interface Params {
-  params: { id: string };
-}
-
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const listing = await prisma.listing.findUnique({
       where: { id: params.id }
@@ -19,6 +18,9 @@ export async function GET(req: NextRequest, { params }: Params) {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch listing" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch listing" },
+      { status: 500 }
+    );
   }
 }
