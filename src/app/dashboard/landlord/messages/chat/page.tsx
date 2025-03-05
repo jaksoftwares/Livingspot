@@ -1,4 +1,4 @@
-// app/dashboard/landlord/messages/chat/page.tsx
+"use client"
 import { Suspense } from "react";
 import ChatInterface from "./chatInterface";
 
