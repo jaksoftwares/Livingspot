@@ -1,7 +1,7 @@
 "use client"; 
 
 import Sidebar from "./sidebar";
-import Topbar from "./topbar";
+import TenantTopbar from "./topbar";
 import "@/styles/globals.css";
 import Footer from "./footer";
 
@@ -12,7 +12,7 @@ export default function LandlordLayout({ children }: { children: React.ReactNode
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1 flex flex-col">
-        <Topbar />
+        <TenantTopbar />
         <main className="p-4">{children}</main>
         <Footer/>
       </div>

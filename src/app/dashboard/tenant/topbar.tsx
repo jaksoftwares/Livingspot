@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { FaUserCircle, FaBell, FaSignOutAlt, FaCog } from "react-icons/fa";
 
-const Topbar = () => {
+const TenantTopbar = () => {
   const [time, setTime] = useState(new Date());
   const [isNotificationsOpen, setNotificationsOpen] = useState(false);
   const [isProfileOpen, setProfileOpen] = useState(false);
@@ -26,7 +26,7 @@ const Topbar = () => {
     <div className="bg-white shadow-md p-4 flex justify-between items-center relative">
       {/* Left Side - Greeting & Time */}
       <div>
-        <h1 className="text-xl font-semibold text-gray-800">{getGreeting()}, Landlord!</h1>
+        <h1 className="text-xl font-semibold text-gray-800">{getGreeting()}, Tenant!</h1>
         <p className="text-gray-500 text-sm">{time.toLocaleTimeString()}</p>
       </div>
 
@@ -39,17 +39,16 @@ const Topbar = () => {
             onClick={() => setNotificationsOpen(!isNotificationsOpen)}
           />
           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-            3
+            2
           </span>
 
           {/* Notifications Dropdown */}
           {isNotificationsOpen && (
-            <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg rounded-lg p-4">
+            <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg rounded-lg p-4 z-50">
               <h3 className="text-gray-800 font-semibold">Notifications</h3>
               <ul className="text-sm text-gray-600 mt-2">
-                <li className="py-2 border-b">🔔 New message from a tenant</li>
-                <li className="py-2 border-b">🏡 Property inquiry received</li>
-                <li className="py-2">⭐ New review on your listing</li>
+                <li className="py-2 border-b">📩 Reply from your landlord</li>
+                <li className="py-2">💳 Upcoming rent payment reminder</li>
               </ul>
               <button className="text-blue-500 text-sm mt-3 w-full text-center">
                 View all notifications
@@ -66,9 +65,9 @@ const Topbar = () => {
           />
 
           {isProfileOpen && (
-            <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-lg p-3">
-              <h3 className="text-gray-800 font-semibold">John Doe</h3>
-              <p className="text-gray-500 text-sm">Landlord</p>
+            <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-lg p-3 z-50">
+              <h3 className="text-gray-800 font-semibold">Jane Doe</h3>
+              <p className="text-gray-500 text-sm">Tenant</p>
               <hr className="my-2" />
               <button className="flex items-center w-full py-2 text-gray-700 hover:text-blue-500">
                 <FaCog className="mr-2" /> Account Settings
@@ -84,4 +83,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default TenantTopbar;
