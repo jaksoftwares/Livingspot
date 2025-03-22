@@ -7,8 +7,8 @@ import Footer from "./footer";
 
 export default function LandlordLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="flex flex-col min-h-screen">
+    // <html lang="en">
+    //   <body className="flex flex-col min-h-screen">
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1 flex flex-col">
@@ -17,7 +17,7 @@ export default function LandlordLayout({ children }: { children: React.ReactNode
         <Footer/>
       </div>
     </div>
-    </body>
-    </html>
+    // </body>
+    // </html>
   );
 }

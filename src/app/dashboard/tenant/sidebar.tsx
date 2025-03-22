@@ -1,25 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IconType } from "react-icons";
-import { 
-  FaHome, FaMoneyBillWave, FaEnvelope, FaBookmark, FaCog, FaSignOutAlt, FaSearch 
+import {  
+  FaHome, FaMoneyBillWave, FaEnvelope, FaBookmark, FaCog, FaSignOutAlt, FaSearch, FaBars 
 } from "react-icons/fa";
 
 const TenantSidebar = () => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState<boolean | null>(null);
+
+  // Ensure the state is only set on the client to prevent SSR mismatches
+  useEffect(() => {
+    setExpanded(true);
+  }, []);
+
+  if (expanded === null) return null; // Avoid rendering during SSR
 
   return (
-    <div className={`h-screen bg-white shadow-md ${expanded ? "w-64" : "w-20"} transition-all flex flex-col`}>
+    <div className={`h-screen bg-white shadow-lg border-r transition-all duration-300 ${expanded ? "w-64" : "w-20"} flex flex-col`}>
+      
       {/* Sidebar Header */}
-      <div className="p-4 flex justify-between items-center border-b">
-        <h1 className={`text-xl font-bold ${expanded ? "block" : "hidden"}`}>LivingSpot</h1>
+      <div className="p-4 flex items-center justify-between border-b">
+        {expanded && <h1 className="text-xl font-bold text-gray-800">LivingSpot</h1>}
         <button 
           onClick={() => setExpanded(!expanded)} 
-          className="text-gray-600 focus:outline-none"
+          className="text-gray-600 hover:text-blue-500 focus:outline-none"
         >
-          {expanded ? "🔽" : "➡"}
+          <FaBars className="text-2xl" />
         </button>
       </div>
 
@@ -27,7 +35,7 @@ const TenantSidebar = () => {
       <nav className="mt-4 flex-1">
         <NavItem href="/dashboard/tenant" icon={FaHome} label="Dashboard" expanded={expanded} />
         <NavItem href="/dashboard/tenant/search" icon={FaSearch} label="Search for Houses" expanded={expanded} />
-        <NavItem href="/dashboard/tenant/saved-properties" icon={FaBookmark} label="Saved Properties" expanded={expanded} />
+        <NavItem href="/dashboard/tenant/saved-houses" icon={FaBookmark} label="Saved Houses" expanded={expanded} />
         <NavItem href="/dashboard/tenant/messages" icon={FaEnvelope} label="Messages" expanded={expanded} />
         <NavItem href="/dashboard/tenant/payments" icon={FaMoneyBillWave} label="Payments" expanded={expanded} />
         <NavItem href="/dashboard/tenant/settings" icon={FaCog} label="Settings" expanded={expanded} />
@@ -35,7 +43,7 @@ const TenantSidebar = () => {
 
       {/* Logout Button */}
       <div className="mt-auto">
-        <button className="flex items-center px-4 py-3 w-full text-red-600 hover:bg-red-100">
+        <button className="flex items-center px-4 py-3 w-full text-red-600 hover:bg-red-100 transition-all">
           <FaSignOutAlt className="text-xl" />
           {expanded && <span className="ml-3">Logout</span>}
         </button>
@@ -44,7 +52,7 @@ const TenantSidebar = () => {
   );
 };
 
-// ✅ Define a type for NavItem props
+// ✅ NavItem Component
 interface NavItemProps {
   href: string;
   icon: IconType;
@@ -52,9 +60,8 @@ interface NavItemProps {
   expanded: boolean;
 }
 
-// ✅ Use the type in NavItem component
 const NavItem: React.FC<NavItemProps> = ({ href, icon: Icon, label, expanded }) => (
-  <Link href={href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-200">
+  <Link href={href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-200 transition-all">
     <Icon className="text-xl" />
     {expanded && <span className="ml-3">{label}</span>}
   </Link>

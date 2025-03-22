@@ -1,23 +1,22 @@
-"use client"; 
+"use client";
 
 import Sidebar from "./sidebar";
 import TenantTopbar from "./topbar";
 import "@/styles/globals.css";
 import Footer from "./footer";
 
-export default function LandlordLayout({ children }: { children: React.ReactNode }) {
+export default function TenantLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="flex flex-col min-h-screen">
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
+      {/* Sidebar - Fixed and Full Height */}
       <Sidebar />
-      <div className="flex-1 flex flex-col">
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col h-screen">
         <TenantTopbar />
-        <main className="p-4">{children}</main>
-        <Footer/>
+        <main className="flex-1 overflow-y-auto p-4">{children}</main>
+        <Footer />
       </div>
     </div>
-    </body>
-    </html>
   );
 }
