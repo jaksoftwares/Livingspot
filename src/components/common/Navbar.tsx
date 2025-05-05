@@ -1,5 +1,6 @@
 // import { Avatar } from "./avatar";
 
+"use client"
 export function Navbar() {
   return (
     <div className="w-full flex items-center justify-between px-6 py-4 bg-white shadow">

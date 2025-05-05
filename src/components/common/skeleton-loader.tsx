@@ -1,3 +1,4 @@
+"use client";
 export function Skeleton({ width = "100%", height = "20px" }) {
     return (
       <div
