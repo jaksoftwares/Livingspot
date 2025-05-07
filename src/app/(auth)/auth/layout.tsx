@@ -1,3 +1,5 @@
+// Project: LivingSpot
+
 import { ReactNode } from "react";
 import "@/styles/globals.css";
 // import { Link } from "lucide-react";

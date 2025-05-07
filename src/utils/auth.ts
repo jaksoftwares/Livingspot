@@ -1,25 +1,20 @@
-import bcrypt from 'bcryptjs';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+// src/utils/auth.ts
 
-// Hash user passwords before storing
-export async function hashPassword(password: string) {
-    const saltRounds = 10;
-    return await bcrypt.hash(password, saltRounds);
-}
+import { supabase } from './supabaseClient';
 
-// Verify password during login
-export async function comparePasswords(plainPassword: string, hashedPassword: string) {
-    return await bcrypt.compare(plainPassword, hashedPassword);
-}
+export const signUp = async (email: string, password: string) => {
+  const { data: { user }, error } = await supabase.auth.signUp({ email, password });
+  if (error) throw error;
+  return user;
+};
 
-// Generate JWT Token
-export function generateToken(userId: string) {
-    return jwt.sign({ userId }, process.env.JWT_SECRET as string, {
-        expiresIn: '7d' // Token expires in 7 days
-    });
-}
+export const signIn = async (email: string, password: string) => {
+  const { data: { user }, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error;
+  return user;
+};
 
-// Verify JWT Token
-export function verifyToken(token: string): JwtPayload | string {
-    return jwt.verify(token, process.env.JWT_SECRET as string);
-}
+export const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+};
