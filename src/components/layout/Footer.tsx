@@ -13,7 +13,7 @@ const Footer = () => {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">About LivingSpot</h3>
             <p className="text-sm">
-              LivingSpot makes house-hunting easy by connecting tenants with landlords, streamlining searches, and enabling seamless bookings.
+              LivingSpot makes finding your perfect space easy by connecting users with agents, streamlining searches, and enabling seamless bookings.
             </p>
           </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/search" className="hover:text-blue-400">
-                  Find Houses
+                  Find Spaces
                 </Link>
               </li>
               <li>

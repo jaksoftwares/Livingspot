@@ -20,7 +20,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold">Who We Are</h2>
           <p className="mt-4 text-lg text-gray-700 leading-relaxed">
             LivingSpot is a digital marketplace dedicated to making housing near learning institutions more accessible.
-            We bridge the gap between landlords and students by providing a seamless platform for house listings, tenant-landlord communication, and transparent transactions.
+            We bridge the gap between agents and students by providing a seamless platform for house listings, user-agent communication, and transparent transactions.
           </p>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="p-6 bg-white rounded-lg shadow-lg text-center">
             <h3 className="text-2xl font-bold text-red-500">Our Mission</h3>
             <p className="mt-3 text-gray-700">
-              To simplify the search for student housing by offering a reliable and efficient platform where tenants and landlords can connect with ease.
+              To simplify the search for student housing by offering a reliable and efficient platform where users and agents can connect with ease.
             </p>
           </div>
           {/* Vision */}
@@ -60,7 +60,7 @@ export default function AboutPage() {
             </div>
             <div className="p-5 bg-gray-100 rounded-lg shadow">
               <h3 className="text-xl font-bold">Seamless Communication</h3>
-              <p className="text-gray-700">Tenants and landlords can connect instantly through our platform.</p>
+              <p className="text-gray-700">Users and agents can connect instantly through our platform.</p>
             </div>
           </div>
         </div>

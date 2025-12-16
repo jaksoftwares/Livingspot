@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [role, setRole] = useState<"houseowner" | "tenant" | "">("");
+  const [role, setRole] = useState<"agent" | "user" | "">("");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -52,9 +52,9 @@ export default function RegisterPage() {
 
       // Redirect based on user role
       setTimeout(() => {
-        router.push(role === "houseowner" ? "/dashboard/homeowner" : "/dashboard/seeker");
+        router.push(role === "agent" ? "/dashboard/agent" : "/dashboard/user");
       }, 1000);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setError("Something went wrong. Please try again.");
       setLoading(false);
@@ -63,13 +63,13 @@ export default function RegisterPage() {
 
   return (
     <>
-    
+
       <div className="relative bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg">
         {/* Company Branding */}
         <div className="flex justify-center">
-            <Image src="/login/ls-logo.jpg" alt="LivingSpot Logo" width={60} height={60} priority />  </div>
+          <Image src="/login/ls-logo.jpg" alt="LivingSpot Logo" width={60} height={60} priority />  </div>
         <h2 className="text-3xl font-bold text-center text-gray-800">Create Your Account</h2>
-        <p className="text-center text-gray-500 mb-6">Sign up as a Landlord or Tenant</p>
+        <p className="text-center text-gray-500 mb-6">Sign up as an Agent or User</p>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
@@ -80,13 +80,13 @@ export default function RegisterPage() {
             <select
               name="role"
               value={role}
-              onChange={(e) => setRole(e.target.value as "houseowner" | "tenant")}
+              onChange={(e) => setRole(e.target.value as "agent" | "user")}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Select Role</option>
-              <option value="houseowner">Houseowner</option>
-              <option value="seeker">Tenant</option>
+              <option value="agent">Agent</option>
+              <option value="user">User</option>
             </select>
           </div>
 
@@ -130,8 +130,8 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Fields for Homeowners */}
-          {role === "houseowner" && (
+          {/* Fields for Agents */}
+          {role === "agent" && (
             <>
               <div>
                 <label className="block text-gray-700 font-medium">ID Number</label>
@@ -147,7 +147,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-medium">Property Name</label>
+                <label className="block text-gray-700 font-medium">Building / Space Name</label>
                 <input
                   type="text"
                   name="propertyName"
@@ -161,8 +161,8 @@ export default function RegisterPage() {
             </>
           )}
 
-          {/* Fields for House Seekers */}
-          {role === "tenant" && (
+          {/* Fields for Users */}
+          {role === "user" && (
             <div>
               <label className="block text-gray-700 font-medium">Preferred Location</label>
               <input
@@ -214,7 +214,7 @@ export default function RegisterPage() {
         </form>
 
         <p className="text-center text-gray-600 mt-4">
-          Already have an account? 
+          Already have an account?
           <Link href="/auth/login" className="text-blue-500 font-semibold ml-1">Login</Link>
         </p>
       </div>

@@ -21,10 +21,10 @@ export default function LandingPage() {
       >
         <div className="bg-black bg-opacity-60 p-8 md:p-12 rounded-2xl text-white max-w-3xl w-full mx-auto shadow-lg">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            Find Your Dream Home with LivingSpot
+            Find Your Dream Space with LivingSpot
           </h1>
           <p className="mt-4 text-lg md:text-xl">
-            Discover verified rentals, land deals, and real estate listings across Kenya.
+            Discover verified homes, offices, and commercial spaces for rent or sale across Kenya.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row justify-center items-center">
             <input
@@ -50,7 +50,7 @@ export default function LandingPage() {
               icon: FaSearch,
               title: "Search",
               description:
-                "Browse homes, land, and rentals with filters for pricing, location, and more.",
+                "Browse homes, offices, and commercial spaces with filters for pricing, location, and more.",
             },
             {
               icon: FaHome,
@@ -183,12 +183,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-            {/* Real Estate Marketing Section */}
+      {/* Real Estate Marketing Section */}
       <section className="py-16 bg-white">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-semibold">Market Your Property Professionally</h2>
           <p className="mt-2 text-gray-600">
-            Whether you&apos;re a landlord, agent, or property owner, LivingSpot helps you reach the right audience.
+            Whether you're an agent, property owner, or user, LivingSpot helps you reach the right audience.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
@@ -196,7 +196,7 @@ export default function LandingPage() {
             {
               icon: FaHome,
               title: "Upload Listings",
-              description: "Easily upload homes, land, or buildings for rent or sale.",
+              description: "Easily upload homes, offices, or commercial spaces for rent or sale.",
             },
             {
               icon: FaUsers,
@@ -218,87 +218,94 @@ export default function LandingPage() {
         </div>
       </section>
 
-    {/* Land for Sale Section */}
-    <section className="py-16 bg-gray-100">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-semibold">Land for Sale Across Kenya</h2>
-        <p className="mt-2 text-gray-600">Explore verified land listings for farming, residential, or commercial use.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {[
-          {
-            title: "1/8 Acre Plot",
-            location: "Kangundo Road, Machakos",
-            price: "Ksh 450,000",
-            img: "/land1.jpg",
-            link: "/land/1"
-          },
-          {
-            title: "50x100 Plot",
-            location: "Ruiru, Kiambu",
-            price: "Ksh 850,000",
-            img: "/land2.jpg",
-            link: "/land/2"
-          },
-          {
-            title: "Prime Commercial Land",
-            location: "Mombasa Road",
-            price: "Ksh 5,000,000",
-            img: "/land3.jpg",
-            link: "/land/3"
-          },
-        ].map(({ title, location, price, img, link }, idx) => (
-          <div key={idx} className="bg-white p-5 rounded-lg shadow text-center">
-            <Image src={img} alt="Land" width={400} height={250} className="rounded-lg mb-4" />
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-gray-600">{location}, {price}</p>
-            <Link href={link} className="text-red-500 mt-3 block">
-              View Details
-            </Link>
-          </div>
-        ))}
-      </div>
-    </section>
 
-    {/* Business Packages */}
-<section className="py-16 bg-white">
-  <div className="text-center mb-12">
-    <h2 className="text-3xl font-semibold">Choose Your Listing Plan</h2>
-    <p className="text-gray-600 mt-2">Flexible plans for individual landlords, agents, and property companies.</p>
-  </div>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    {[
-      {
-        title: "Basic",
-        price: "Free",
-        features: ["List up to 3 properties", "Email inquiries", "Basic support"],
-      },
-      {
-        title: "Pro",
-        price: "Ksh 999/mo",
-        features: ["Unlimited listings", "Priority visibility", "Dashboard tools"],
-      },
-      {
-        title: "Enterprise",
-        price: "Custom",
-        features: ["Custom branding", "Dedicated support", "Agency dashboard"],
-      },
-    ].map(({ title, price, features }, index) => (
-      <div key={index} className="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <p className="text-2xl text-red-500 my-4">{price}</p>
-        <ul className="text-gray-700 space-y-2">
-          {features.map((feature, i) => (
-            <li key={i}>✓ {feature}</li>
+      {/* Office & Commercial Spaces Section */}
+      <section className="py-16 bg-gray-100">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold">Premium Workspaces & Commercial Units</h2>
+          <p className="mt-2 text-gray-600">Explore verified offices, shops, and warehouses for your business.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Modern Office Suite",
+              location: "Westlands, Nairobi",
+              price: "Ksh 85,000/mo",
+              img: "/office1.jpg",
+              link: "/property/office-1"
+            },
+            {
+              title: "CBD Shop Space",
+              location: "Moi Avenue, Nairobi",
+              price: "Ksh 45,000/mo",
+              img: "/shop1.jpg",
+              link: "/property/shop-1"
+            },
+            {
+              title: "Industrial Warehouse",
+              location: "Mombasa Road",
+              price: "Ksh 150,000/mo",
+              img: "/warehouse1.jpg",
+              link: "/property/warehouse-1"
+            },
+          ].map(({ title, location, price, img, link }, idx) => (
+            <div key={idx} className="bg-white p-5 rounded-lg shadow text-center">
+              {/* Note: In a real app, ensure these images exist or use placeholders */}
+              <div className="bg-gray-200 h-48 w-full rounded-lg mb-4 flex items-center justify-center text-gray-400">
+                {/* Fallback visual if image missing */}
+                <span className="text-sm">Workspace Image</span>
+              </div>
+
+              <h3 className="text-xl font-bold">{title}</h3>
+              <p className="text-gray-600">{location}</p>
+              <p className="text-red-500 font-bold mt-1">{price}</p>
+              <Link href={link} className="text-red-500 mt-3 block hover:underline">
+                View Details
+              </Link>
+            </div>
           ))}
-        </ul>
-        <button className="mt-6 px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-          Get Started
-        </button>
-      </div>
-    ))}
-  </div>
-</section>
+        </div>
+      </section>
+
+      {/* Business Packages */}
+      <section className="py-16 bg-white">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold">Choose Your Listing Plan</h2>
+          <p className="text-gray-600 mt-2">Flexible plans for individual agents and property companies.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {[
+            {
+              title: "Basic",
+              price: "Free",
+              features: ["List up to 3 properties", "Email inquiries", "Basic support"],
+            },
+            {
+              title: "Pro",
+              price: "Ksh 999/mo",
+              features: ["Unlimited listings", "Priority visibility", "Dashboard tools"],
+            },
+            {
+              title: "Enterprise",
+              price: "Custom",
+              features: ["Custom branding", "Dedicated support", "Agency dashboard"],
+            },
+          ].map(({ title, price, features }, index) => (
+            <div key={index} className="bg-gray-100 p-6 rounded-lg shadow text-center">
+              <h3 className="text-xl font-bold">{title}</h3>
+              <p className="text-2xl text-red-500 my-4">{price}</p>
+              <ul className="text-gray-700 space-y-2">
+                {features.map((feature, i) => (
+                  <li key={i}>✓ {feature}</li>
+                ))}
+              </ul>
+              <button className="mt-6 px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                Get Started
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
 
 
 
@@ -339,7 +346,7 @@ export default function LandingPage() {
             {
               question: "Is LivingSpot free to use?",
               answer:
-                "Yes, browsing and contacting landlords is completely free for tenants.",
+                "Yes, browsing and contacting agents is completely free for users.",
             },
             {
               question: "How do I get in touch with a property owner?",

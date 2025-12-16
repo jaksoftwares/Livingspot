@@ -6,7 +6,7 @@ import { JwtPayload } from 'jsonwebtoken';
 // Define user structure
 interface AuthenticatedUser {
     id: string;
-    role: string; // Could be "HOMEOWNER", "TENANT", "ADMIN", etc.
+    role: string; // Could be "AGENT", "USER", "ADMIN", etc.
 }
 
 /**
@@ -48,28 +48,28 @@ export async function authMiddleware(req: NextRequest): Promise<AuthenticatedUse
 }
 
 /**
- * Middleware to check if the user is a Homeowner
- * - Ensures only homeowners can access certain routes
+ * Middleware to check if the user is an Agent
+ * - Ensures only agents can access certain routes
  */
-export async function isHomeowner(req: NextRequest): Promise<AuthenticatedUser> {
+export async function isAgent(req: NextRequest): Promise<AuthenticatedUser> {
     const user = await authMiddleware(req);
 
-    if (user.role !== 'HOMEOWNER') {
-        throw new Error("Access denied. Only Homeowners are allowed.");
+    if (user.role !== 'AGENT') {
+        throw new Error("Access denied. Only Agents are allowed.");
     }
 
     return user;
 }
 
 /**
- * Middleware to check if the user is a Tenant
- * - Ensures only tenants can access certain routes
+ * Middleware to check if the user is a User
+ * - Ensures only users can access certain routes
  */
-export async function isTenant(req: NextRequest): Promise<AuthenticatedUser> {
+export async function isUser(req: NextRequest): Promise<AuthenticatedUser> {
     const user = await authMiddleware(req);
 
-    if (user.role !== 'TENANT') {
-        throw new Error("Access denied. Only Tenants are allowed.");
+    if (user.role !== 'USER') {
+        throw new Error("Access denied. Only Users are allowed.");
     }
 
     return user;

@@ -9,11 +9,11 @@ const faqs = [
     questions: [
       {
         question: "What is LivingSpot?",
-        answer: "LivingSpot is a digital marketplace that connects students and residents with landlords near educational institutions, offering seamless house listings and tenant-landlord communication.",
+        answer: "LivingSpot is a digital marketplace that connects students and residents with agents near educational institutions, offering seamless house listings and user-agent communication.",
       },
       {
         question: "Is LivingSpot free to use?",
-        answer: "Yes! Browsing listings and connecting with landlords is free for tenants. Landlords have the option to choose premium listing plans for greater visibility.",
+        answer: "Yes! Browsing listings and connecting with agents is free for users. Agents have the option to choose premium listing plans for greater visibility.",
       },
       {
         question: "Which areas does LivingSpot cover?",
@@ -21,7 +21,7 @@ const faqs = [
       },
       {
         question: "How do I sign up?",
-        answer: "Simply click on 'Sign Up', choose whether you are a tenant or landlord, and follow the registration steps. You'll need a valid email and phone number for verification.",
+        answer: "Simply click on 'Sign Up', choose whether you are a user or agent, and follow the registration steps. You'll need a valid email and phone number for verification.",
       },
       {
         question: "How do I reset my password?",
@@ -30,36 +30,36 @@ const faqs = [
     ],
   },
   {
-    category: "For Tenants",
+    category: "For Users",
     questions: [
       {
         question: "How do I search for a house?",
         answer: "Use our search bar and filters to refine your search by location, price range, house type, and number of bedrooms.",
       },
       {
-        question: "How do I contact a landlord?",
-        answer: "Click on a listing, express interest, and use our in-app messaging system to chat with the property owner.",
+        question: "How do I contact an agent?",
+        answer: "Click on a listing, express interest, and use our in-app messaging system to chat with the property owner or agent.",
       },
       {
         question: "Are the houses verified?",
-        answer: "We strive to verify all property listings, but we encourage tenants to conduct their own due diligence before making payments.",
+        answer: "We strive to verify all property listings, but we encourage users to conduct their own due diligence before making payments.",
       },
       {
         question: "Can I schedule a house visit?",
-        answer: "Yes, you can message the landlord and request a house visit at a convenient time.",
+        answer: "Yes, you can message the agent and request a house visit at a convenient time.",
       },
       {
         question: "Do I need to pay a deposit before moving in?",
-        answer: "Deposit policies vary by landlord. Always clarify the payment terms with the landlord before committing to a rental agreement.",
+        answer: "Deposit policies vary by agent. Always clarify the payment terms with the agent before committing to a rental agreement.",
       },
     ],
   },
   {
-    category: "For Landlords",
+    category: "For Agents",
     questions: [
       {
         question: "How can I list my property?",
-        answer: "Sign up as a landlord, navigate to 'List Property,' and provide property details, images, pricing, and any additional information.",
+        answer: "Sign up as an agent, navigate to 'List Property,' and provide property details, images, pricing, and any additional information.",
       },
       {
         question: "What types of properties can I list?",
@@ -67,15 +67,15 @@ const faqs = [
       },
       {
         question: "Can I edit or remove my listing?",
-        answer: "Yes, you can update, pause, or remove your property listing anytime via your landlord dashboard.",
+        answer: "Yes, you can update, pause, or remove your property listing anytime via your agent dashboard.",
       },
       {
         question: "How do I know if someone is interested in my property?",
-        answer: "You will receive notifications when a tenant expresses interest or sends a message about your listing.",
+        answer: "You will receive notifications when a user expresses interest or sends a message about your listing.",
       },
       {
-        question: "How do I respond to tenant inquiries?",
-        answer: "You can reply directly using the in-app messaging feature on your landlord dashboard.",
+        question: "How do I respond to user inquiries?",
+        answer: "You can reply directly using the in-app messaging feature on your agent dashboard.",
       },
     ],
   },
@@ -84,11 +84,11 @@ const faqs = [
     questions: [
       {
         question: "Does LivingSpot handle rent payments?",
-        answer: "Currently, LivingSpot facilitates communication between landlords and tenants. However, payment integrations for secure transactions may be introduced in the future.",
+        answer: "Currently, LivingSpot facilitates communication between agents and users. However, payment integrations for secure transactions may be introduced in the future.",
       },
       {
         question: "How do I avoid rental scams?",
-        answer: "Always verify listings, meet landlords in person when possible, and never make payments before visiting the property. If something seems suspicious, report it to our support team.",
+        answer: "Always verify listings, meet agents in person when possible, and never make payments before visiting the property. If something seems suspicious, report it to our support team.",
       },
       {
         question: "Is my data secure?",
@@ -99,8 +99,8 @@ const faqs = [
         answer: "Report any suspicious listings immediately via the 'Report' button on the property page or contact our support team.",
       },
       {
-        question: "Can landlords remove a tenant unfairly?",
-        answer: "Landlords must follow legal procedures for eviction. If you experience unfair treatment, seek legal advice or contact local authorities.",
+        question: "Can agents remove a user unfairly?",
+        answer: "Agents must follow legal procedures for eviction. If you experience unfair treatment, seek legal advice or contact local authorities.",
       },
     ],
   },
@@ -138,11 +138,11 @@ const faqs = [
       },
       {
         question: "Does LivingSpot offer rental agreements?",
-        answer: "Currently, we do not provide rental agreements. We recommend tenants and landlords draft agreements independently to ensure clarity on rental terms.",
+        answer: "Currently, we do not provide rental agreements. We recommend users and agents draft agreements independently to ensure clarity on rental terms.",
       },
       {
-        question: "What happens if a landlord refuses to return my deposit?",
-        answer: "If you have fulfilled your rental terms and the landlord refuses to return your deposit, you may need to take legal action through the relevant authorities.",
+        question: "What happens if an agent refuses to return my deposit?",
+        answer: "If you have fulfilled your rental terms and the agent refuses to return your deposit, you may need to take legal action through the relevant authorities.",
       },
     ],
   },

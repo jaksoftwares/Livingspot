@@ -7,15 +7,15 @@ const MiniFAQ = () => {
   const faqs = [
     {
       question: "Is LivingSpot free to use?",
-      answer: "Yes! Searching for houses is completely free for tenants.",
+      answer: "Yes! Searching for houses is completely free for users.",
     },
     {
-      question: "How do I contact a landlord?",
-      answer: "You can message landlords directly through our platform.",
+      question: "How do I contact an agent?",
+      answer: "You can message agents directly through our platform.",
     },
     {
       question: "Are listings verified?",
-      answer: "We verify most listings, but we recommend tenants conduct due diligence before making any payments.",
+      answer: "We verify most listings, but we recommend users conduct due diligence before making any payments.",
     },
   ];
 
